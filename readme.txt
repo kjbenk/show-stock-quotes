@@ -18,17 +18,14 @@ Displays up-to-date stock data from Yahoo! Finance. Up to five stocks can be sho
 
 Upload `show_stock_quotes` to the `/wp-content/plugins/` directory or activate the plugin through the 'Plugins' menu in WordPress
 
-== Frequently Asked Questions ==
-
-= A question that someone might have =
-
-
-
 == Screenshots ==
 
 1. Show Stocks
 
 == Changelog ==
+
+= 1.5 =
+-	Fixed bug with multiple portfolios
 
 = 1.4.1 =
 -	Fixed minor bug
@@ -56,11 +53,3 @@ Upload `show_stock_quotes` to the `/wp-content/plugins/` directory or activate t
 
 = 1.0 =
 Initial release
-
-== Upgrade Notice ==
-
-= 1.0 =
-Initial release
-
-== Arbitrary section ==
-

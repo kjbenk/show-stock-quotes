@@ -3,7 +3,7 @@
 Plugin Name: Show Stock Quotes
 Plugin URI: http://kylebenkapps.com/wordpress-plugins/
 Description: Show stock quotes updated in real-time.
-Version: 1.4.1
+Version: 1.5
 Author: Kyle Benk
 Author URI: http://kylebenkapps.com
 License: GPL2
@@ -48,7 +48,9 @@ class kjb_Show_Stocks extends WP_Widget {
 	
 	/** @see WP_Widget::widget */
     function widget($args, $instance) {
+		
 		extract( $args );
+		
 		$title = $instance['title'];
 		
 		echo $before_widget;
@@ -59,7 +61,18 @@ class kjb_Show_Stocks extends WP_Widget {
 			echo 'Make sure settings are saved.';
 		}
 		
-		$tickers = $this->kjb_get_stock_data($instance);
+		$tickers = array();
+		
+		for ($i = 1; $i < 21; $i++) {
+			
+			$ticker = $instance['stock_' . $i];
+			
+			if ($ticker != '') {
+				$tickers[] = $ticker;
+			}
+		}
+		
+		$this->kjb_get_stock_data($instance);
 		
 		//Display all stock data
 		?>
@@ -142,7 +155,7 @@ class kjb_Show_Stocks extends WP_Widget {
 			for ($i = 1; $i < 21; $i++) {
 				$stock = isset($instance['stock_'.$i]) ? $instance['stock_'.$i] : '';
 				?>
-				<li><input class="widefat" id="<?php echo $this->get_field_id( 'stock_'.$i ); ?>" name="<?php echo $this->get_field_name( 'stock_'.$i); ?>" type="text" value="<?php echo esc_attr( $stock ); ?>" /></li>
+				<li><input class="widefat" id="<?php echo $this->get_field_id( 'stock_'.$i ); ?>" name="<?php echo $this->get_field_name('stock_' . $i); ?>" type="text" value="<?php echo esc_attr( $stock ); ?>" /></li>
 				<?php
 			}
 			?>
@@ -160,42 +173,31 @@ class kjb_Show_Stocks extends WP_Widget {
 		wp_register_style('kjb_quotes_css_src', plugins_url('include/css/kjb_quotes.css', __FILE__));
 		wp_enqueue_style('kjb_quotes_css_src');
 		
-		wp_enqueue_script('kjb_jquery', "//code.jquery.com/jquery-1.10.2.js");
+		$out = array();
 		
-		//$out = get_transient('kjb_stockdata_transient');
+		$all_tickers = get_option('widget_kjb_show_stocks');
 		
-		//if (false === $out){
-		for ($i = 1; $i < 21; $i++) {
-			$ticker = $ticker_info['stock_'.$i];
-			if ($ticker != '') {
-				//Get stock data
-				//$contents = str_getcsv(file_get_contents('http://download.finance.yahoo.com/d/quotes.csv?s='.$ticker.'&f=sl1c1c0&e=.csv'),',');
-				/*
-if ($contents[1] != '0.00') {
-					$temp = array(
-					'ticker' => $contents[],
-					'quote' => $contents[],
-					'change' => $contents[],
-					'change_precent' => $contents[]
-				);
-				}else{
-					$temp = 'Invalid ticker';
+		if ($all_tickers !== false) {
+			
+			foreach ($all_tickers as $key => $val) {
+				
+				for ($i = 1; $i < 21; $i++) {
+			
+					$ticker = $val['stock_' . $i];
+					
+					if ($ticker != '') {
+						$out[] = $ticker;
+					}
 				}
-*/					
-				$out[] = $ticker;
 			}
+			
+			$passed_data = array(
+				'out'					=> isset($out) ? $out : array(),
+				'quote_display_color'	=> $val['quote_display_color']
+			);
 		}
 		
-		$passed_data = array(
-			'out'					=> isset($out) ? $out : array(),
-			'quote_display_color'	=> $ticker_info['quote_display_color']
-		);
-		
 		wp_localize_script('kjb_quotes_js_src', 'passed_data', $passed_data);
-			
-			
-			//set_transient('kjb_stockdata_transient',$out,60);	
-		//}
 		
 		return isset($out) ? $out : array();
 	}
