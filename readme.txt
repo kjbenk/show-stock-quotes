@@ -8,11 +8,15 @@ Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Displays up-to-date stock data from Yahoo! Finance. Up to five stocks can be shown.
+Displays up-to-date stock data from Yahoo! Finance. Up to 20 stocks can be shown.
 
 == Description ==
 
-Displays up-to-date stock data from Yahoo! Finance. Up to five stocks can be shown.
+Displays up-to-date stock data from Yahoo! Finance. Up to 20 stocks can be shown.
+
+This plugin also handles multiple portfolio support.  Do this by simply adding multiple instanes of the widget into the sidebar you want.
+
+Please check out my site http://kylebenkapps.com
 
 == Installation ==
 
