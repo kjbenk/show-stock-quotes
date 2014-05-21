@@ -144,7 +144,7 @@ class kjb_Show_Stocks extends WP_Widget {
 		<?php }
 		?></table>
 		
-		<ul id="kjb_show_stock_quotes_rss_<?php echo $this->id; ?>" style="border:none;">
+		<ul style="list-style-type:circle;" id="kjb_show_stock_quotes_rss_<?php echo $this->id; ?>" style="border:none;">
 			
 		</ul>
 		<?php
@@ -246,39 +246,6 @@ class kjb_Show_Stocks extends WP_Widget {
 		
 		wp_register_style('kjb_quotes_css_src', plugins_url('include/css/kjb_quotes.css', __FILE__));
 		wp_enqueue_style('kjb_quotes_css_src');
-		
-		/*
-$all_tickers = get_option('widget_kjb_show_stocks');
-		
-		$portfolios = array();
-		$portfolio_stocks = array();
-		
-		if ($all_tickers !== false) {
-			
-			foreach ($all_tickers as $key => $val) {
-				
-				for ($i = 1; $i < 21; $i++) {
-			
-					$ticker = $val['stock_' . $i];
-					
-					if ($ticker != '') {
-						$portfolio_stocks[] = $ticker;
-					}
-				}
-				
-				$portfolios[] = $portfolio_stocks;
-				$portfolio_stocks = array();
-			}
-			
-			$passed_data = array(
-				'portfolios'			=> isset($portfolios) ? $portfolios : array()
-			);
-		}
-		
-		wp_localize_script('kjb_quotes_js_src', 'passed_data', $passed_data);
-		
-		return isset($portfolios) ? $portfolios : array();
-*/
 	}
 }
 

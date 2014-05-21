@@ -93,18 +93,7 @@ function get_stock_data(url, color, stocks) {
 					}
 	        	}
 		        
-	        } /*
-else {
-	        	console.log('fail');
-	        	console.log('--'  + $(".kjb_show_stock_quotes_error").text() + '--');
-	        	
-	        	if ($(".kjb_show_stock_quotes_error").text() == null) {
-		        	$(".kjb_show_stock_quotes_error").attr('style', 'border: none;color:red; text-align:right');
-					$(".kjb_show_stock_quotes_error").text('Failed');
-	        	}
-				
 	        }
-*/
     })
         .fail(function (jqxhr, textStatus, error) {
         	var err = textStatus + ", " + error;
