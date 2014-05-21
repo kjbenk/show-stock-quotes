@@ -115,7 +115,7 @@ class kjb_Show_Stocks extends WP_Widget {
 		?>
 			<tr style="border:none;"> 
 				<td class="kjb_show_stock_quotes_ticker" style="border: none;"> <a target="_blank" href="http://finance.yahoo.com/q?s=<?php echo $ticker; ?>"><?php echo $ticker; ?></a></td> 
-				<td class="kjb_show_stock_quotes_quote_<?php echo $new_ticker; ?> kjb_show_stock_quotes_error"></td>
+				<td class="kjb_show_stock_quotes_quote_<?php echo $this->id . $new_ticker; ?> kjb_show_stock_quotes_error"></td>
 				<td class="kjb_show_stock_quotes_change_<?php echo $new_ticker; ?> kjb_show_stock_quotes_error"></td>
 			</tr>
 			
