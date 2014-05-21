@@ -12,7 +12,7 @@ License: GPL2
 /* Plugin verison */
 
 if (!defined('KJB_SHOW_STOCK_QUOTES_VERSION_NUM'))
-    define('KJB_SHOW_STOCK_QUOTES_VERSION_NUM', '1.5.0');
+    define('KJB_SHOW_STOCK_QUOTES_VERSION_NUM', '2.0.0');
     
 /** 
  * Activatation / Deactivation 
