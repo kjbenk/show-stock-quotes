@@ -4,7 +4,7 @@ Donate link:
 Tags: stocks, stock quotes, market, money, investing, finance, wall street
 Requires at least: 3.5
 Tested up to: 3.9.1
-Stable tag: 1.5
+Stable tag: 2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ Displays up-to-date stock data from Yahoo! Finance. Up to 20 stocks can be shown
 
 == Description ==
 
-Displays up-to-date stock data from Yahoo! Finance. Up to 20 stocks can be shown.
+Displays up-to-date stock data from Yahoo! Finance. Up to 20 stocks can be shown.  Also displays realtime news through an rss feed.  Lastly, there is no limit to the amount of portoflios you can add to your side bar.  Just drag over a new widget instance and the plugin will take care of the rest.  
 
 This plugin also supports multiple portfolios.  This can be done by simply adding multiple instances of the widget into the sidebar you want.
 
@@ -28,6 +28,9 @@ Upload `show_stock_quotes` to the `/wp-content/plugins/` directory or activate t
 1. Multiple Portfolios
 
 == Changelog ==
+
+= 2.0 =
+-	Added RSS support
 
 = 1.5 =
 -	Fixed bug with multiple portfolios
