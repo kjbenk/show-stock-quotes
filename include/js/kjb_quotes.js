@@ -28,7 +28,7 @@ function get_rss_feed(url, table_id, rss_num, stocks) {
 	
 	$.getJSON(url, 'q=' + yql_url + "&format=json&diagnostics=true&env=http%3A%2F%2Fdatatables.org%2Falltables.env")
 		.done(function (data) {
-			console.log(rss_num);
+			
 			for (var k = 0; k < rss_num; k++) {
 			
 				$("#kjb_show_stock_quotes_rss_" + table_id).append('<li style="border:none;"><a href="' +  data.query.results.item[k].link + '" target="_blank">' + data.query.results.item[k].title + '</a></li>');
@@ -56,7 +56,7 @@ function get_stock_data(url, table_id, color, stocks) {
 		        	quote.Symbol = quote.Symbol.replace('^', '-');
 					quote.Symbol = quote.Symbol.replace('.', '_');
 					
-					if (data.query.results.quote.Change <= 0) {
+					if (quote.Change <= 0) {
 			        	if (color == 'change') {
 				        	$(".kjb_show_stock_quotes_quote_" + table_id + quote.Symbol).attr('style', 'border: none; color:red; text-align:right'); 
 			        	}else {
@@ -74,8 +74,8 @@ function get_stock_data(url, table_id, color, stocks) {
 						$(".kjb_show_stock_quotes_change_" + quote.Symbol).attr('style', 'border: none;color:green; text-align:right');
 			        }
 			        
-			        var price = (Math.round(quote.LastTradePriceOnly * 10) / 10).toFixed(2);
-			        var change = (Math.round(quote.Change * 10) / 10).toFixed(2);
+			        var price = (Math.round(quote.LastTradePriceOnly * 100) / 100).toFixed(2);
+			        var change = (Math.round(quote.Change * 100) / 100).toFixed(2);
 			        
 			        $(".kjb_show_stock_quotes_quote_" + table_id + quote.Symbol).text(price);
 					$(".kjb_show_stock_quotes_change_" + quote.Symbol).text(change);

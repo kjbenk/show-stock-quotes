@@ -3,7 +3,7 @@
 Plugin Name: Show Stock Quotes
 Plugin URI: http://kylebenkapps.com/wordpress-plugins/
 Description: Show stock quotes updated in real-time.
-Version: 2.0
+Version: 2.0.2
 Author: Kyle Benk
 Author URI: http://kylebenkapps.com
 License: GPL2
@@ -12,13 +12,15 @@ License: GPL2
 /* Plugin verison */
 
 if (!defined('KJB_SHOW_STOCK_QUOTES_VERSION_NUM'))
-    define('KJB_SHOW_STOCK_QUOTES_VERSION_NUM', '2.0.0');
+    define('KJB_SHOW_STOCK_QUOTES_VERSION_NUM', '2.0.2');
     
 /** 
  * Activatation / Deactivation 
  */  
 
 register_activation_hook( __FILE__, array('kjb_Show_Stocks', 'register_activation'));
+
+add_action('wp_enqueue_scripts', array('kjb_Show_Stocks', 'frontend_include_scripts'));
 
 $plugin = plugin_basename(__FILE__); 
 add_filter("plugin_action_links_$plugin", array('kjb_Show_Stocks', 'show_stock_quotes_widget_link'));
@@ -99,7 +101,7 @@ class kjb_Show_Stocks extends WP_Widget {
 			}
 		}
 		
-		$this->kjb_get_stock_data($instance, $this->id);
+		//$this->kjb_get_stock_data($instance, $this->id);
 		
 		//Display all stock data
 		?>
@@ -216,7 +218,8 @@ class kjb_Show_Stocks extends WP_Widget {
     			<?php for ($x = 0; $x < 21; $x++) { ?>
     			<option value="<?php echo $x; ?>" <?php echo isset($rss_num) && (int) $rss_num == $x ? 'selected' : ''; ?>><?php echo $x; ?></option>
 				<?php } ?>
-    		</select>
+    		</select><br/>
+    		<em><label><?php _e( 'RSS feeds will only show if all stock tickers are valid.  Also, this feature does not work with indices yet, so please exclude them if you want the RSS to work.' ); ?></label></em>
     	</p>
     	
     	<!-- Stock Tickers -->
@@ -239,7 +242,10 @@ class kjb_Show_Stocks extends WP_Widget {
 	}
 	
 	
-	protected function kjb_get_stock_data($ticker_info, $key) {
+	static function frontend_include_scripts() {
+	
+		wp_enqueue_script('jquery_kjb', plugins_url('include/js/jquery-1.11.1.min.js', __FILE__));
+		wp_enqueue_script('jquery_ui_kjb', plugins_url('include/js/jquery-ui-1.10.4.min.js', __FILE__));
 	
 		wp_register_script('kjb_quotes_js_src', plugins_url('include/js/kjb_quotes.js', __FILE__));
 		wp_enqueue_script('kjb_quotes_js_src');
