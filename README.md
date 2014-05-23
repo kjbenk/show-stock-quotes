@@ -6,6 +6,6 @@ Displays up to 20 stock quotes per portfolio in real-time with an optional RSS f
 
 This plugin also supports multiple portfolios. This can be done by simply adding multiple instances of the widget into the sidebar you want.
 
-Please check out my [website] [site].
+Please check out my [site] [website].
 
 [website]: http://kylebenkapps.com
