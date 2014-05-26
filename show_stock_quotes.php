@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: Show Stock Quotes
-Plugin URI: http://kylebenkapps.com/wordpress-plugins/
-Description: Show stock quotes updated in real-time.
-Version: 2.0.2
+Plugin URI: http://kylebenkapps.com/show-stock-quotes/
+Description: Display up to 20 stock quotes per portfolio.  Each widget instance is considered a portfolio, so just add more widget instances for more portfolios.
+Version: 2.0.3
 Author: Kyle Benk
 Author URI: http://kylebenkapps.com
 License: GPL2
@@ -133,11 +133,13 @@ class kjb_Show_Stocks extends WP_Widget {
 				</td>
 			</tr>
 			
-			<tr style="border:none;">
+			<!--
+<tr style="border:none;">
 				<td style="border:none;">
 					<input style="display:none;" id="kjb_show_stock_quotes_id_rss_num_<?php echo $this->id; ?>" value="<?php echo isset($instance['rss_num']) ? $instance['rss_num'] : '0'; ?>"/>
 				</td>
 			</tr>
+-->
 			
 			<tr class="kjb_show_stock_quotes_rss_<?php echo $this->id; ?>" style="border:none;">
 				<td style="border:none;">
@@ -160,7 +162,7 @@ class kjb_Show_Stocks extends WP_Widget {
 		
 		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
 		$instance['quote_display_color'] = ( ! empty( $new_instance['quote_display_color'] ) ) ? strip_tags( $new_instance['quote_display_color'] ) : '';
-		$instance['rss_num'] = ( ! empty( $new_instance['rss_num'] ) ) ? strip_tags( $new_instance['rss_num'] ) : '';
+		//$instance['rss_num'] = ( ! empty( $new_instance['rss_num'] ) ) ? strip_tags( $new_instance['rss_num'] ) : '';
 		
 		foreach ($this->options as $val) {
 			$instance[$val['name']] = strip_tags(isset($new_instance[$val['name']]) ? $new_instance[$val['name']] : '');
@@ -184,11 +186,13 @@ class kjb_Show_Stocks extends WP_Widget {
 	    	$quote_display_color = 'change';    	
 	    }
 	    
-	    if (isset($instance['rss_num'])){
+	    /*
+if (isset($instance['rss_num'])){
 	    	$rss_num = $instance['rss_num'];
     	}else{
 	    	$rss_num = '0';    	
 	    }
+*/
 	    
 	   
     	?>
@@ -211,7 +215,8 @@ class kjb_Show_Stocks extends WP_Widget {
     	
     	<!-- Number of RSS Feeds -->
     	
-    	<p>
+    	<!--
+<p>
     		<label for="<?php echo $this->get_field_name( 'rss_num' ); ?>"><?php _e( 'Number of RSS Feeds' ); ?></label>
     		
     		<select id="<?php echo $this->get_field_id( 'rss_num' ); ?>" name="<?php echo $this->get_field_name( 'rss_num' ); ?>">
@@ -221,6 +226,7 @@ class kjb_Show_Stocks extends WP_Widget {
     		</select><br/>
     		<em><label><?php _e( 'RSS feeds will only show if all stock tickers are valid.  Also, this feature does not work with indices yet, so please exclude them if you want the RSS to work.' ); ?></label></em>
     	</p>
+-->
     	
     	<!-- Stock Tickers -->
     	

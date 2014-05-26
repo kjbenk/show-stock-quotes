@@ -4,17 +4,15 @@ Donate link:
 Tags: stocks, stock quotes, market, money, investing, finance, wall street
 Requires at least: 3.5
 Tested up to: 3.9.1
-Stable tag: 2.0.2
+Stable tag: 2.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Displays up to 20 stock quotes per portfolio in real-time with an optional RSS feed.  The RSS feed and stocks have links to their respective sites.
+Display up to 20 stock quotes per portfolio.  Each widget instance is considered a portfolio, so just add more widget instances for more portfolios.
 
 == Description ==
 
-Displays up to 20 stock quotes per portfolio in real-time with an optional RSS feed.  The RSS feed and stocks have links to their respective sites.
-
-This plugin also supports multiple portfolios. This can be done by simply adding multiple instances of the widget into the sidebar you want.
+Display up to 20 stock quotes per portfolio.  Each widget instance is considered a portfolio, so just add more widget instances for more portfolios.
 
 Please check out my site http://kylebenkapps.com
 
@@ -30,6 +28,9 @@ Upload `show_stock_quotes` to the `/wp-content/plugins/` directory or activate t
 4. Settings
 
 == Changelog ==
+
+= 2.0.3 =
+-	Changed API because of Terms of Service discrepency.
 
 = 2.0.2 =
 -	Fixed bug with stock change color and rounding errors.
