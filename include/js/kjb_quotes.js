@@ -2,13 +2,10 @@
  * Created by Kyle Benk
  * http://kylebenkapps.com
  *
- * Yahoo Finance Credit to http://jsfiddle.net/vlad_bezden/RU8Jq/
  * Google Finance Credit to http://jsfiddle.net/A4jKT/4/
  */
 
 jQuery(document).ready(function($) {
-
-	//var url = "https://query.yahooapis.com/v1/public/yql";
 
 	var url = "http://www.google.com/finance/info?infotype=infoquoteall";
 
@@ -24,31 +21,13 @@ jQuery(document).ready(function($) {
 
 function get_stock_data(url, table_id, color, stocks) {
 
-	//var data = encodeURIComponent('select * from csv where url="http://download.finance.yahoo.com/d/quotes.csv?s=' + stocks + '&f=sl1c1&e=.csv"');
-
-    //$.getJSON(url, 'q=' + data + "&format=json&diagnostics=true&env=http%3A%2F%2Fdatatables.org%2Falltables.env")
     $.getJSON(url + '&q=' + stocks + "&callback=?")
         .done(function (data) {
 
-	        //if (typeof(data.query.results) != "undefined" && data.query.results !== null) {
-
 	        if (typeof(data) != "undefined" && data !== null) {
-
-	        	//for (q = 0; q < data.query.results.row.length; q++) {
 
 	        	for (q = 0; q < data.length; q++) {
 
-	        		console.log(data[q]);
-
-	        		/*
-var quote = data.query.results.row[q];
-		        	var symbol = quote.col0.replace('^', '-');
-					symbol = symbol.replace('.', '_');
-					var last_price = quote.col1;
-					var last_change = quote.col2;
-*/
-
-					//var quote = data[q].l;
 		        	var symbol = data[q].t.replace('^', '-');
 					symbol = symbol.replace('.', '_');
 					var last_price = data[q].l;
