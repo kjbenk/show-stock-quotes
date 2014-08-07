@@ -133,14 +133,6 @@ class kjb_Show_Stocks extends WP_Widget {
 				</td>
 			</tr>
 
-			<!--
-<tr style="border:none;">
-				<td style="border:none;">
-					<input style="display:none;" id="kjb_show_stock_quotes_id_rss_num_<?php echo $this->id; ?>" value="<?php echo isset($instance['rss_num']) ? $instance['rss_num'] : '0'; ?>"/>
-				</td>
-			</tr>
--->
-
 			<tr class="kjb_show_stock_quotes_rss_<?php echo $this->id; ?>" style="border:none;">
 				<td style="border:none;">
 				</td>
@@ -185,16 +177,6 @@ class kjb_Show_Stocks extends WP_Widget {
     	}else{
 	    	$quote_display_color = 'change';
 	    }
-
-	    /*
-if (isset($instance['rss_num'])){
-	    	$rss_num = $instance['rss_num'];
-    	}else{
-	    	$rss_num = '0';
-	    }
-*/
-
-	  	error_log(serialize(file_get_contents('http://www.quandl.com/api/v1/datasets/GOOG/NASDAQ_AAPL?column=4&trim_start=2014-06-20&trim_end=2014-06-20&exclude_headers=true')));
     	?>
 
     	<!-- Title -->
@@ -212,21 +194,6 @@ if (isset($instance['rss_num'])){
     		<input type="radio" id="<?php echo $this->get_field_id( 'quote_display_color' ); ?>" name="<?php echo $this->get_field_name( 'quote_display_color' ); ?>" value="black" <?php echo isset($quote_display_color) && $quote_display_color == 'black' ? "checked" : ""; ?>/><label><?php _e('Same as symbol'); ?></label><br/>
     		<input type="radio" id="<?php echo $this->get_field_id( 'quote_display_color' ); ?>" name="<?php echo $this->get_field_name( 'quote_display_color' ); ?>" value="change" <?php echo isset($quote_display_color) && $quote_display_color == 'change' ? "checked" : ""; ?>/><label><?php _e('Same as change color'); ?></label>
     	</p>
-
-    	<!-- Number of RSS Feeds -->
-
-    	<!--
-<p>
-    		<label for="<?php echo $this->get_field_name( 'rss_num' ); ?>"><?php _e( 'Number of RSS Feeds' ); ?></label>
-
-    		<select id="<?php echo $this->get_field_id( 'rss_num' ); ?>" name="<?php echo $this->get_field_name( 'rss_num' ); ?>">
-    			<?php for ($x = 0; $x < 21; $x++) { ?>
-    			<option value="<?php echo $x; ?>" <?php echo isset($rss_num) && (int) $rss_num == $x ? 'selected' : ''; ?>><?php echo $x; ?></option>
-				<?php } ?>
-    		</select><br/>
-    		<em><label><?php _e( 'RSS feeds will only show if all stock tickers are valid.  Also, this feature does not work with indices yet, so please exclude them if you want the RSS to work.' ); ?></label></em>
-    	</p>
--->
 
     	<!-- Stock Tickers -->
 
@@ -250,10 +217,7 @@ if (isset($instance['rss_num'])){
 
 	static function frontend_include_scripts() {
 
-		wp_enqueue_script('jquery_kjb', plugins_url('include/js/jquery-1.11.1.min.js', __FILE__));
-		wp_enqueue_script('jquery_ui_kjb', plugins_url('include/js/jquery-ui-1.10.4.min.js', __FILE__));
-
-		wp_register_script('kjb_quotes_js_src', plugins_url('include/js/kjb_quotes.js', __FILE__));
+		wp_register_script('kjb_quotes_js_src', plugins_url('include/js/kjb_quotes.js', __FILE__), array('jquery', 'jquery-ui-core'));
 		wp_enqueue_script('kjb_quotes_js_src');
 
 		wp_register_style('kjb_quotes_css_src', plugins_url('include/css/kjb_quotes.css', __FILE__));
