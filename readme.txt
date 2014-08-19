@@ -1,6 +1,6 @@
 === Show Stock Quotes ===
 Contributors: kjbenk
-Donate link: 
+Donate link:
 Tags: stocks, stock quotes, market, money, investing, finance, wall street
 Requires at least: 3.5
 Tested up to: 3.9.1
@@ -29,19 +29,9 @@ Upload `show_stock_quotes` to the `/wp-content/plugins/` directory or activate t
 
 == Disclaimer ==
 
-This data is provided by Google Finance and per their disclaimer, it can only be used at a noncommercial level.  Also, Google has stated that this API is deprecated and has no exact  shutdown date. 
+This data is provided by Google Finance and per their disclaimer, it can only be used at a noncommercial level.  Also, Google has stated that this API is deprecated and has no exact  shutdown date.
 
-Data is provided by financial exchanges and may be delayed as specified by financial exchanges or our data providers. Google does not verify any data and disclaims any obligation to do so.
-
-Google, its data or content providers, the financial exchanges and each of their affiliates and business partners (A) expressly disclaim the accuracy, adequacy, or completeness of any data and (B) shall not be liable for any errors, omissions or other defects in, delays or interruptions in such data, or for any actions taken in reliance thereon. Neither Google nor any of our information providers will be liable for any damages relating to your use of the information provided herein. As used here, “business partners” does not refer to an agency, partnership, or joint venture relationship between Google and any such parties.
-
-You agree not to copy, modify, reformat, download, store, reproduce, reprocess, transmit or redistribute any data or information found herein or use any such data or information in a commercial enterprise without obtaining prior written consent. All data and information is provided “as is” for personal informational purposes only, and is not intended for trading purposes or advice. Please consult your broker or financial representative to verify pricing before executing any trade.
-
-Either Google or its third party data or content providers have exclusive proprietary rights in the data and information provided.
-
-Please find all listed exchanges and indices covered by Google along with their respective time delays from the table on the left.
-
-Advertisements presented on Google Finance are solely the responsibility of the party from whom the ad originates. Neither Google nor any of its data licensors endorses or is responsible for the content of any advertisement or any goods or services offered therein.
+Data is provided by financial exchanges and may be delayed as specified by financial exchanges or our data providers. Google does not verify any data and disclaims any obligation to do so.  Google, its data or content providers, the financial exchanges and each of their affiliates and business partners (A) expressly disclaim the accuracy, adequacy, or completeness of any data and (B) shall not be liable for any errors, omissions or other defects in, delays or interruptions in such data, or for any actions taken in reliance thereon. Neither Google nor any of our information providers will be liable for any damages relating to your use of the information provided herein. As used here, “business partners” does not refer to an agency, partnership, or joint venture relationship between Google and any such parties.  You agree not to copy, modify, reformat, download, store, reproduce, reprocess, transmit or redistribute any data or information found herein or use any such data or information in a commercial enterprise without obtaining prior written consent. All data and information is provided “as is” for personal informational purposes only, and is not intended for trading purposes or advice. Please consult your broker or financial representative to verify pricing before executing any trade.  Either Google or its third party data or content providers have exclusive proprietary rights in the data and information provided.  Please find all listed exchanges and indices covered by Google along with their respective time delays from the table on the left.  Advertisements presented on Google Finance are solely the responsibility of the party from whom the ad originates. Neither Google nor any of its data licensors endorses or is responsible for the content of any advertisement or any goods or services offered therein.
 
 == Changelog ==
 
@@ -65,7 +55,7 @@ Advertisements presented on Google Finance are solely the responsibility of the 
 -	Fixed minor bug
 
 = 1.4 =
--	Option to change price color from normal (same color as ticker) to same color as change (green or red). 
+-	Option to change price color from normal (same color as ticker) to same color as change (green or red).
 
 = 1.3.1 =
 -	Rounds to the nearest second decimal place.
@@ -81,7 +71,7 @@ Advertisements presented on Google Finance are solely the responsibility of the 
 -	Fixed widget to fit the entire sidebar.
 
 = 1.1 =
--	Results are now responsive.  
+-	Results are now responsive.
 -	Also, data is retrieved unsing an aync function so plugin will not affect page load time.
 -	Add up to 20 stocks!
 
