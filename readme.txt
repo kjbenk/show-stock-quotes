@@ -1,5 +1,5 @@
 === Show Stock Quotes ===
-Contributors: kjbenk
+Contributors: kjbenk, wpsitenet, charliepatel
 Donate link:
 Tags: stocks, stock quotes, market, money, investing, finance, wall street
 Requires at least: 3.5
@@ -24,8 +24,7 @@ Upload `show_stock_quotes` to the `/wp-content/plugins/` directory or activate t
 
 1. Show Stocks
 2. Multiple Portfolios
-3. Multiple Portfolios RSS Feeds
-4. Settings
+3. Settings
 
 == Disclaimer ==
 
