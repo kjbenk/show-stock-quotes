@@ -20,8 +20,18 @@ jQuery(document).ready(function($) {
 
 	function get_stock_data(url, table_id, color, stocks) {
 
-	    $.getJSON(url + '&q=' + stocks + "&callback=?")
+    	$.ajax({
+    		dataType: "text",
+			url: url + '&q=' + stocks,
+		})
 	        .done(function (data) {
+
+	        	data = data.substr(3);
+
+				data = data.replace("/ ^[\b \t \n \r \]*$", '');
+
+	        	data = jQuery.parseJSON(unescape(data));
+
 
 		        if (typeof(data) != "undefined" && data !== null) {
 
