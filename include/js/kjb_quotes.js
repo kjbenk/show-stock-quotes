@@ -7,7 +7,7 @@
 
 jQuery(document).ready(function($) {
 
-	var url = "http://www.google.com/finance/info?infotype=infoquoteall";
+	var url = "http://finance.google.com/finance/info?client=ig";
 
 	var tables = $(".kjb_show_stock_quotes_table");
 
@@ -20,17 +20,22 @@ jQuery(document).ready(function($) {
 
 	function get_stock_data(url, table_id, color, stocks) {
 
-    	$.ajax({
+    	/*
+$.ajax({
     		dataType: "text",
 			url: url + '&q=' + stocks,
 		})
+*/
+		 $.getJSON(url + '&q=' + stocks + "&callback=?")
 	        .done(function (data) {
 
-	        	data = data.substr(3);
+	        	/*
+data = data.substr(3);
 
 				data = data.replace("/ ^[\b \t \n \r \]*$", '');
 
 	        	data = jQuery.parseJSON(unescape(data));
+*/
 
 
 		        if (typeof(data) != "undefined" && data !== null) {
