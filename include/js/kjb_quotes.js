@@ -55,6 +55,7 @@ data = data.substr(3);
 				        	}
 
 							$(".kjb_show_stock_quotes_change_" + symbol).attr('style', 'border: none; color:red; text-align:right');
+							$(".kjb_show_stock_quotes_change_p_" + symbol).attr('style', 'border: none;color:red; text-align:right');
 				        }else{
 				        	if (color == 'change') {
 				        	 $(".kjb_show_stock_quotes_quote_" + table_id + symbol).attr('style', 'border: none;color:green; text-align:right');
@@ -63,13 +64,15 @@ data = data.substr(3);
 				        	}
 
 							$(".kjb_show_stock_quotes_change_" + symbol).attr('style', 'border: none;color:green; text-align:right');
+							$(".kjb_show_stock_quotes_change_p_" + symbol).attr('style', 'border: none;color:green; text-align:right');
 				        }
 
 				        var price = (Math.round(last_price * 100) / 100).toFixed(2);
 				        var change = (Math.round(last_change * 100) / 100).toFixed(2);
 
-				        $(".kjb_show_stock_quotes_quote_" + table_id + symbol).text(price);
+				        $(".kjb_show_stock_quotes_quote_" + table_id + symbol).text('$' + price);
 						$(".kjb_show_stock_quotes_change_" + symbol).text(change);
+						$(".kjb_show_stock_quotes_change_p_" + symbol).text(data[q].cp + '%');
 
 						if (last_price == 0) {
 							if (color == 'change') {
@@ -79,6 +82,7 @@ data = data.substr(3);
 				        	}
 
 							$(".kjb_show_stock_quotes_change_" + symbol).attr('style', 'border: none;color:red; text-align:right');
+							$(".kjb_show_stock_quotes_change_p_" + symbol).attr('style', 'border: none;color:red; text-align:right');
 							$(".kjb_show_stock_quotes_quote_" + table_id + symbol).text('Invalid');
 							$(".kjb_show_stock_quotes_change_" + symbol).text('Invalid');
 						}
