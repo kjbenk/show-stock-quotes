@@ -18,6 +18,13 @@ jQuery(document).ready(function($) {
 		get_stock_data(url, $(tables[x]).attr('id'), $("#kjb_show_stock_quotes_id_color_" + $(tables[x]).attr('id')).val(), stocks);
 	}
 
+	  function commaSeparateNumber(val){
+	    while (/(\d+)(\d{3})/.test(val.toString())){
+	      val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
+	    }
+	    return val;
+	  }
+
 	function get_stock_data(url, table_id, color, stocks) {
 
     	/*
@@ -44,8 +51,8 @@ data = data.substr(3);
 
 			        	var symbol = data[q].t.replace('^', '-');
 						symbol = symbol.replace('.', '_');
-						var last_price = data[q].l;
-						var last_change = data[q].c;
+						var last_price = parseFloat(data[q].l.replace(',', ''));
+						var last_change = parseFloat(data[q].c);
 
 						if (last_change <= 0) {
 				        	if (color == 'change') {
@@ -70,7 +77,7 @@ data = data.substr(3);
 				        var price = (Math.round(last_price * 100) / 100).toFixed(2);
 				        var change = (Math.round(last_change * 100) / 100).toFixed(2);
 
-				        $(".kjb_show_stock_quotes_quote_" + table_id + symbol).text('$' + price);
+				        $(".kjb_show_stock_quotes_quote_" + table_id + symbol).text('$' + commaSeparateNumber(price));
 						$(".kjb_show_stock_quotes_change_" + symbol).text(change);
 						$(".kjb_show_stock_quotes_change_p_" + symbol).text(data[q].cp + '%');
 
