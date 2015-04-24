@@ -3,9 +3,9 @@
 Plugin Name: Show Stock Quotes
 Plugin URI: http://kylebenkapps.com/show-stock-quotes/
 Description: Display up to 20 stock quotes per portfolio.  Each widget instance is considered a portfolio, so just add more widget instances for more portfolios.
-Version: 2.2.3
-Author: Kyle Benk
-Author URI: http://kylebenkapps.com
+Version: 2.2.4
+Author: 99 Robots
+Author URI: http://99robots.com
 License: GPL2
 */
 
@@ -29,7 +29,7 @@ Advertisements presented on Google Finance are solely the responsibility of the 
 /* Plugin verison */
 
 if (!defined('KJB_SHOW_STOCK_QUOTES_VERSION_NUM'))
-    define('KJB_SHOW_STOCK_QUOTES_VERSION_NUM', '2.2.3');
+    define('KJB_SHOW_STOCK_QUOTES_VERSION_NUM', '2.2.4');
 
 add_action( 'widgets_init', 'wps_show_stock_quotes_register');
 
