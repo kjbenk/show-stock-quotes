@@ -1,10 +1,10 @@
-=== Show Stock Quotes ===
-Contributors: 99robots, wpsitenet
+=== Show Stock Quotes by 99 Robots ===
+Contributors: 99robots, kjbenk, charliepatel
 Donate link:
 Tags: stocks, stock quotes, market, money, investing, finance, wall street
-Requires at least: 3.8
-Tested up to: 4.2
-Stable tag: 2.2.4
+Requires at least: 4.0
+Tested up to: 4.3.1
+Stable tag: 2.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,7 +14,7 @@ Display up to 20 stock quotes per portfolio.  Each widget instance is considered
 
 Display up to 20 stock quotes per portfolio.  Each widget instance is considered a portfolio, so just add more widget instances for more portfolios.
 
-Please visit our site for more information about our products and services http://99robots.com.
+Also please check out our other [plugins](https://99robots.com/products/?utm_source=wprepo&utm_medium=show-stock-quotes&utm_campaign=desc) :)
 
 == Installation ==
 
@@ -34,81 +34,84 @@ Data is provided by financial exchanges and may be delayed as specified by finan
 
 == Changelog ==
 
+= 2.3.0 =
+* UPDATED: Compatible with WordPress 4.3.1
+
 = 2.2.4 =
--   Re-branded plugin to 99 Robots
+* Re-branded plugin to 99 Robots
 
 = 2.2.3 =
--	Fixed bug with displaying stock data
+* Fixed bug with displaying stock data
 
 = 2.2.2 =
--	Fixed some styling issues
+* Fixed some styling issues
 
 = 2.2.1 =
--	Minor Updates
+* Minor Updates
 
 = 2.2 =
--	Fixed bug with price not showing up if price is over $1,000
+* Fixed bug with price not showing up if price is over $1,000
 
 = 2.1.1 =
--	Compatible with WordPress 4.1
+* Compatible with WordPress 4.1
 
 = 2.1 =
--	Added a fourth column in stock details for the change in percent
+* Added a fourth column in stock details for the change in percent
 
 = 2.0.8 =
--	Fixed issue with plugin registration function
+* Fixed issue with plugin registration function
 
 = 2.0.7 =
--	Fixed minor bug with ajax call
+* Fixed minor bug with ajax call
 
 = 2.0.6 =
--	Fixed minor bug with browser support issues
+* Fixed minor bug with browser support issues
 
 = 2.0.5 =
--	Supports WordPress 4.0
+* Supports WordPress 4.0
 
 = 2.0.4 =
--	Fixed minor bug
+* Fixed minor bug
 
 = 2.0.3 =
--	Changed API because of Terms of Service discrepency.
+* Changed API because of Terms of Service discrepancy.
 
 = 2.0.2 =
--	Fixed bug with stock change color and rounding errors.
+* Fixed bug with stock change color and rounding errors.
 
 = 2.0.1 =
--	Fixed bug with that didn’t show stock quotes for some instances.
+* Fixed bug with that didn’t show stock quotes for some instances.
 
 = 2.0 =
--	Added RSS support
--	Also added links to all stocks
+* Added RSS support
+* Also added links to all stocks
 
 = 1.5 =
--	Fixed bug with multiple portfolios
+* Fixed bug with multiple portfolios
 
 = 1.4.1 =
--	Fixed minor bug
+* Fixed minor bug
 
 = 1.4 =
--	Option to change price color from normal (same color as ticker) to same color as change (green or red).
+* Option to change price color from normal (same color as ticker) to same color as change (green or red).
 
 = 1.3.1 =
--	Rounds to the nearest second decimal place.
--	Fixed minor bug that affected the price retrieval of some indices.
+* Rounds to the nearest second decimal place.
+* Fixed minor bug that affected the price retrieval of some indices.
 
 = 1.3 =
--	Fixed bug that affected the retrieval of index quotes.
+* Fixed bug that affected the retrieval of index quotes.
 
 = 1.2.1 =
--	Fixed minor bug
+* Fixed minor bug
 
 = 1.2 =
--	Fixed widget to fit the entire sidebar.
+* Fixed widget to fit the entire sidebar.
 
 = 1.1 =
--	Results are now responsive.
--	Also, data is retrieved unsing an aync function so plugin will not affect page load time.
--	Add up to 20 stocks!
+* Results are now responsive.
+* Also, data is retrieved unsing an aync function so plugin will not affect page load time.
+* Add up to 20 stocks!
 
 = 1.0 =
-Initial release
+* Initial release :)
