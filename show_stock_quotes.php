@@ -7,6 +7,9 @@ Version: 2.3.0
 Author: 99 Robots
 Author URI: https://99robots.com
 License: GPL2
+
+DRW fork: added the capability to capture the cost-basis so that a Position PNL can be calculated and displayed.
+          also added a heading line
 */
 
 /*                    ** GOOGLE FINACE DISCLIAMER **
@@ -84,13 +87,15 @@ class kjb_Show_Stocks extends WP_Widget {
 
 		$this->options[] = array(
 			'name'  => 'title', 'label' => 'Title',
-			'type'	=> 'text', 	'default' => 'Stocks'
+			'type'	=> 'text', 	'default' => 'Stocks',
+			'cost'  => 'Costs'
 		);
 
 		for ($i = 1; $i < 21; $i++) {
 			$this->options[] = array(
 				'name'	=> 'stock_' . $i,	'label'	=> 'Stock Tickers',
-				'type'	=> 'text',	'default' => ''
+				'type'	=> 'text',	'default' => '',
+				'cost'  => 'cost_' . $i
 			);
 		}
 
@@ -117,37 +122,53 @@ class kjb_Show_Stocks extends WP_Widget {
 
 		for ($i = 1; $i < 21; $i++) {
 
-			$ticker = $instance['stock_' . $i];
+			$ticker = strtoupper($instance['stock_' . $i]);
 
 			if ($ticker != '') {
 				$tickers[] = $ticker;
 			}
 		}
+		
+		$costs = array();
 
+		for ($i = 1; $i < 21; $i++) {
+
+			$cost = $instance['cost_' . $i];
+
+			if ($cost != '') {
+				$costs[] = $cost;
+			}
+		}
+
+    
 		//$this->kjb_get_stock_data($instance, $this->id);
 
 		//Display all stock data
 		?>
 		<table class="kjb_show_stock_quotes_table" id="<?php echo $this->id; ?>">
-			<col width='25%'>
-			<col width='25%'>
-			<col width='25%'>
-			<col width='25%'>
-
+			<thead>
+			  <tr>
+			    <th id="col1">stock</th>
+				<th class="right">quote</th>
+				<th class="right">day % change</th>
+				<th class="right">total % change</th>
+			</tr>
+			</thead>
 			<tbody>
-
 				<?php
-				foreach($tickers as $ticker) {
-
+				$index=0;
+                foreach($tickers as $ticker) {
+                
 					$new_ticker = str_replace('^', '-', $ticker);
 					$new_ticker = str_replace('.', '_', $new_ticker);
+
 				?>
 					<tr>
 						<td class="kjb_show_stock_quotes_ticker"> <a target="_blank" href="http://finance.yahoo.com/q?s=<?php echo $ticker; ?>"><?php echo $ticker; ?></a></td>
 						<td class="kjb_show_stock_quotes_quote_<?php echo $this->id . $new_ticker; ?> kjb_show_stock_quotes_error"></td>
-						<td class="kjb_show_stock_quotes_change_<?php echo $new_ticker; ?> kjb_show_stock_quotes_error"></td>
 						<td class="kjb_show_stock_quotes_change_p_<?php echo $new_ticker; ?> kjb_show_stock_quotes_error"></td>
-					</tr>
+						<td class="kjb_show_stock_quotes_change_pnl_<?php echo $new_ticker; ?> kjb_show_stock_quotes_error"></td>
+ 					</tr>
 
 					<tr style="display: none;">
 						<td>
@@ -160,6 +181,12 @@ class kjb_Show_Stocks extends WP_Widget {
 							<input style="display:none;" id="kjb_show_stock_quotes_id_color_<?php echo $this->id; ?>" value="<?php echo isset($instance['quote_display_color']) ? $instance['quote_display_color'] : 'change'; ?>"/>
 						</td>
 					</tr>
+					
+					<tr style="display: none;">
+						<td class="kjb_show_stock_quotes_costs<?php echo $index; ?>"> <?php echo $costs[$index]; ?></a></td>
+					</tr>
+
+					
 
 		<!--
 					<tr class="kjb_show_stock_quotes_rss_<?php echo $this->id; ?>" style="border:none;">
@@ -167,15 +194,17 @@ class kjb_Show_Stocks extends WP_Widget {
 						</td>
 					</tr>
 		-->
-				<?php }
+
+				<?php 
+      				  $index = $index + 1; 
+					}
 				?>
 
 			</tbody>
 		</table>
-
-		<ul style="list-style-type:circle;" id="kjb_show_stock_quotes_rss_<?php echo $this->id; ?>" style="border:none;">
-
-		</ul>
+	
+<!--		<ul style="list-style-type:circle;" id="kjb_show_stock_quotes_rss_<?php echo $this->id; ?>" style="border:none;">
+		</ul>  -->
 		<?php
 
 		echo $after_widget;
@@ -191,8 +220,8 @@ class kjb_Show_Stocks extends WP_Widget {
 
 		foreach ($this->options as $val) {
 			$instance[$val['name']] = strip_tags(isset($new_instance[$val['name']]) ? $new_instance[$val['name']] : '');
-		}
-
+			$instance[$val['cost']] = strip_tags(isset($new_instance[$val['cost']]) ? $new_instance[$val['cost']] : '77');
+			}
         return $instance;
     }
 
@@ -231,14 +260,19 @@ class kjb_Show_Stocks extends WP_Widget {
     	<!-- Stock Tickers -->
 
     	<p>
-			<label><?php _e( 'Stock Tickers' ); ?></label>
+			<label><?php _e( 'Stock Tickers and Cost Basis' ); ?></label>
 			<ol>
 
 			<?php
 			for ($i = 1; $i < 21; $i++) {
 				$stock = isset($instance['stock_'.$i]) ? $instance['stock_'.$i] : '';
+				$cost = isset($instance['cost_'.$i]) ? $instance['cost_'.$i] : '';
+
 				?>
-				<li><input class="widefat" id="<?php echo $this->get_field_id( 'stock_'.$i ); ?>" name="<?php echo $this->get_field_name('stock_' . $i); ?>" type="text" value="<?php echo esc_attr( $stock ); ?>" /></li>
+				<li>
+				  <input style="width:45%;" id="<?php echo $this->get_field_id( 'stock_'.$i ); ?>" name="<?php echo $this->get_field_name('stock_' . $i); ?>" type="text" value="<?php echo esc_attr( $stock ); ?>" />
+				  <input style="width:45%"; id="<?php echo $this->get_field_id( 'cost_'.$i ); ?>" name="<?php echo $this->get_field_name('cost_' . $i); ?>" type="text" value="<?php echo esc_attr( $cost ); ?>" />
+				</li>
 				<?php
 			}
 			?>

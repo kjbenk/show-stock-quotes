@@ -7,6 +7,63 @@
 
 jQuery(document).ready(function($) {
 
+	function sortTable(f,n){
+		var rows = $('#mytable tbody tr').get();
+        var count = 0;
+		rows.sort(function(a, b) {
+
+          var A = getVal(a);
+          var B = getVal(b);
+
+          if(A < B) {
+            return -1*f;
+          }
+          if(A > B) {
+            return 1*f;
+          }
+		  count = count +1;
+
+          return 0;
+        });
+
+        function getVal(elm){
+          var v = $(elm).children('td').eq(n).text().toUpperCase();
+          if($.isNumeric(v)){
+             v = parseInt(v,10);
+          }
+          return v;
+        }
+
+        $.each(rows, function(index, row) {
+          $('#mytable').children('tbody').append(row);
+        });
+	}
+	
+	var f_col1 = 1; // flag to toggle the sorting order
+	var f_col2 = 1; // flag to toggle the sorting order
+	var f_col3 = 1; // flag to toggle the sorting order
+	var f_col4 = 1; // flag to toggle the sorting order
+	$("#col1").click(function(){
+		f_col1 *= -1; // toggle the sorting order
+		var n = $(this).prevAll().length;
+		sortTable(f_col1,n);
+	});
+	$("#col2").click(function(){
+		f_col2 *= -1; // toggle the sorting order
+		var n = $(this).prevAll().length;
+		sortTable(f_col2,n);
+	});
+	$("#col3").click(function(){
+		f_col3 *= -1; // toggle the sorting order
+		var n = $(this).prevAll().length;
+		sortTable(f_col3,n);
+	});	
+	$("#col4").click(function(){
+		f_col4 *= -1; // toggle the sorting order
+		var n = $(this).prevAll().length;
+		sortTable(f_col4,n);
+	});	
+	
 	var url = "http://finance.google.com/finance/info?client=ig";
 
 	var tables = $(".kjb_show_stock_quotes_table");
@@ -63,6 +120,7 @@ data = data.substr(3);
 
 							$(".kjb_show_stock_quotes_change_" + symbol).attr('style', 'border: none; color:red; text-align:right');
 							$(".kjb_show_stock_quotes_change_p_" + symbol).attr('style', 'border: none;color:red; text-align:right');
+							$(".kjb_show_stock_quotes_change_pnl_" + symbol).attr('style', 'border: none;color:red; text-align:right');
 				        }else{
 				        	if (color == 'change') {
 				        	 $(".kjb_show_stock_quotes_quote_" + table_id + symbol).attr('style', 'border: none;color:green; text-align:right');
@@ -72,15 +130,21 @@ data = data.substr(3);
 
 							$(".kjb_show_stock_quotes_change_" + symbol).attr('style', 'border: none;color:green; text-align:right');
 							$(".kjb_show_stock_quotes_change_p_" + symbol).attr('style', 'border: none;color:green; text-align:right');
-				        }
+							$(".kjb_show_stock_quotes_change_pnl_" + symbol).attr('style', 'border: none;color:green; text-align:right');
+						}
 
 				        var price = (Math.round(last_price * 100) / 100).toFixed(2);
 				        var change = (Math.round(last_change * 100) / 100).toFixed(2);
-
+						var cost = $(".kjb_show_stock_quotes_costs"+q).text();
+						var PNL = ((last_price - cost) / cost *100).toFixed(2); 
+						var PNLs = PNL.toString();
+						
 				        $(".kjb_show_stock_quotes_quote_" + table_id + symbol).text('$' + commaSeparateNumber(price));
 						$(".kjb_show_stock_quotes_change_" + symbol).text(change);
 						$(".kjb_show_stock_quotes_change_p_" + symbol).text(data[q].cp + '%');
+						$(".kjb_show_stock_quotes_change_pnl_" + symbol).text(PNLs+'%');
 
+						
 						if (last_price == 0) {
 							if (color == 'change') {
 								$(".kjb_show_stock_quotes_quote_" + table_id + symbol).attr('style', 'border: none;color:red; text-align:right');
@@ -90,6 +154,7 @@ data = data.substr(3);
 
 							$(".kjb_show_stock_quotes_change_" + symbol).attr('style', 'border: none;color:red; text-align:right');
 							$(".kjb_show_stock_quotes_change_p_" + symbol).attr('style', 'border: none;color:red; text-align:right');
+							$(".kjb_show_stock_quotes_change_pnl_" + symbol).attr('style', 'border: none;color:red; text-align:right');
 							$(".kjb_show_stock_quotes_quote_" + table_id + symbol).text('Invalid');
 							$(".kjb_show_stock_quotes_change_" + symbol).text('Invalid');
 						}
@@ -102,4 +167,5 @@ data = data.substr(3);
 	        	//console.log(err);
 	    });
 	}
+
 });
